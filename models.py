@@ -33,6 +33,8 @@ class Atividades(Base):
     nome = Column(String(80))
     pessoa_id = Column(Integer, ForeignKey('pessoas.id'))
     pessoa = relationship("Pessoas")
+    status = Column(String(10))
+
 
     def __repr__(self):
         return '<Atividade {}>'.format(self.nome)
@@ -48,6 +50,10 @@ class Atividades(Base):
 
 def init_db():
     Base.metadata.create_all(bind=engine)
+    #Base.metadata.drop_all(bind=engine)
+    
+    #Base.add_column(bind=engine, Atividades, status)
+
 
 if __name__ == "__main__":
     init_db()
